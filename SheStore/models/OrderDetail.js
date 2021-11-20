@@ -1,19 +1,13 @@
 const mongoose = require('mongoose')
 
 const orderDetailSchema = new mongoose.Schema({
-    detail_id:{
-        type: Number,
-        unique: true,
-        trim: true,
-        required: true
-    },
     order_id: {
-        type: Number,
+        type: String,
         required: true,
         trim: true
     },
     product_id: {
-        type: Number,
+        type: String,
         required: true,
         trim: true
     },

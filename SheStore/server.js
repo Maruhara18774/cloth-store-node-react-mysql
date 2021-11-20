@@ -15,6 +15,9 @@ app.use(fileUpload({
 
 // Routes
 app.use('/user', require('./routes/userRouter'))
+app.use('/api', require('./routes/upload'))
+app.use('/product', require('./routes/productRouter'))
+app.use('/category', require('./routes/categoryRouter'))
 
 
 // Connect DB

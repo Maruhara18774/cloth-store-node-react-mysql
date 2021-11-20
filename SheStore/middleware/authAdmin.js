@@ -1,4 +1,4 @@
-const Users = require('../models/userModel')
+const Users = require('../models/Account')
 
 const authAdmin = async (req, res, next) =>{
     try {
@@ -6,7 +6,7 @@ const authAdmin = async (req, res, next) =>{
         const user = await Users.findOne({
             _id: req.user.id
         })
-        if(user.role === 0)
+        if(user.role === "Client")
             return res.status(400).json({msg: "Admin resources access denied"})
 
         next()
