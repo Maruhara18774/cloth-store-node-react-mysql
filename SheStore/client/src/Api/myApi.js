@@ -20,6 +20,15 @@ const myApi = {
       } catch (error) {
         console.error(error);
       }
+  },
+  login: async(value)=>{
+    try {
+      const url = baseApiUrl + "/user" + "/login";
+      var result = await Axios.post(url,value);
+      return result.data;
+    } catch (error) {
+      console.error(error);
+    }
   }
 };
 export default myApi;
