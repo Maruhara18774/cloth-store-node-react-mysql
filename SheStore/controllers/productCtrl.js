@@ -1,4 +1,6 @@
 const Products = require('../models/Product')
+const Orders = require('../models/Order')
+const OrderDetails = require('../models/OrderDetail');
 
 // Filter, sorting and paginating
 
@@ -97,6 +99,27 @@ const productCtrl = {
             })
 
             res.json({msg: "Updated a Product"})
+        } catch (err) {
+            return res.status(500).json({msg: err.message})
+        }
+    },
+    buyNow: async(req, res) =>{
+        try {
+            const {userID, soldPrice} = req.body;
+
+            const today = new Date();
+            const state = "New";
+
+            const newOrder = new Orders({
+                account_id: userID, 
+                createdDate: today, 
+                status: state, 
+                total: soldPrice
+            })
+
+            await newOrder.save()
+            res.json({msg: "Created a order"})
+
         } catch (err) {
             return res.status(500).json({msg: err.message})
         }

@@ -4,13 +4,16 @@ import Navbar from './Components/Navbar';
 import Homepage from './Pages/Homepage';
 import LoginForm from './Pages/Login';
 import StorePage from './Pages/Store';
+import { useState } from 'react';
+
 
 function App() {
+  const [userID, setUserID] = useState("");
   return (
     <div className="App">
       <Navbar/>
-      <StorePage/>
-      <LoginForm/>
+      <StorePage userID={userID}/>
+      <LoginForm callback={setUserID}/>
       <Footer/>
     </div>
   );

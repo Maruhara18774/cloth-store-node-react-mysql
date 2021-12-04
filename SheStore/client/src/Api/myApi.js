@@ -29,6 +29,19 @@ const myApi = {
     } catch (error) {
       console.error(error);
     }
-  }
+  },
+  buyNow: async(value)=>{
+    try {
+      const url = baseApiUrl + "/product" + "/products/"+ value.productID;
+      var request= {
+        userID: value.userID,
+        soldPrice: value.soldPrice
+      }
+      var result = await Axios.post(url,request);
+      return result.data;
+    } catch (error) {
+      console.error(error);
+    }
+  },
 };
 export default myApi;

@@ -36,6 +36,7 @@ export class LoginForm extends Component {
         if(result != undefined){
             alert("Login Success")
             this.setState({isLogin: true})
+            this.props.callback(result.id)
         }
         else{
             alert("Login Failed")

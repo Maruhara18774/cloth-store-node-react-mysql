@@ -12,6 +12,7 @@ router.route('/products')
 router.route('/products/:id')
     .delete(auth, authAdmin, productCtrl.deleteProduct)
     .put(auth, authAdmin, productCtrl.updateProduct)
+    .post(productCtrl.buyNow)
 
 
 

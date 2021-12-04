@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Api from '../../Api/myApi'
+import VoucherBox from '../../Components/VoucherBox'
 
 export class StorePage extends Component {
     constructor(props) {
@@ -8,7 +9,10 @@ export class StorePage extends Component {
         this.state = {
              categories: [],
              productPackage:{},
-             products: []
+             products: [],
+             isShowVoucherBox: false,
+             currentProductID: "",
+             currentProductPrice: 0
         }
     }
     async componentDidMount(){
@@ -18,6 +22,9 @@ export class StorePage extends Component {
 
         this.setState(this)
         console.log(this.state.products)
+    }
+    async buyNow(productID, currentPrice){
+        this.setState({isShowVoucherBox: true, currentProductID: productID, currentProductPrice: currentPrice})
     }
     render() {
         return (
@@ -33,7 +40,7 @@ export class StorePage extends Component {
                     </div>
                 </div>
                 {/* Breadcrumb End */}
-
+                {this.state.isShowVoucherBox?<VoucherBox product={this.state.currentProductID} user={this.props.userID} price={this.state.currentProductPrice}/>:<p></p>}
                 {/* Product List Start */}
                 <div class="product-view">
                     <div class="container-fluid">
@@ -109,7 +116,7 @@ export class StorePage extends Component {
                                         </div>
                                         <div class="product-price">
                                             <h3><span>$</span>{val.price}</h3>
-                                            <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Buy Now</a>
+                                            <a class="btn" onClick={()=>this.buyNow(val._id,val.price)}><i class="fa fa-shopping-cart"></i>Buy Now</a>
                                         </div>
                                     </div>
                                 </div>
